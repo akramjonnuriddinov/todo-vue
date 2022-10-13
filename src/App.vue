@@ -1,19 +1,19 @@
 <template>
-  <div class="w-full mt-5 h-auto container border bg-white rounded py-5 max-w-md mx-auto px-5">
-    <h1 class="text-4xl font-semibold mb-4">{{ header }}</h1>
-    <div class="flex justify-between items-center mb-4">
-      <input class="mr-2 border p-2 w-full" v-model.trim="input_value" type="text" placeholder="Add Yout New ToDo">
-      <button @click="addItem" class="px-3 bg-pink-500 rounded pb-1 text-white font-bold text-4xl flex items-center justify-center" type="button">+</button>
+  <div class="container w-full h-auto max-w-md px-5 py-5 mx-auto mt-5 bg-white border rounded">
+    <h1 class="mb-4 text-4xl font-semibold">{{ header }}</h1>
+    <div class="flex items-center justify-between mb-4">
+      <input class="w-full p-2 mr-2 border" v-model.trim="input_value" type="text" placeholder="Add Yout New ToDo">
+      <button @click="addItem" class="flex items-center justify-center px-3 pb-1 text-4xl font-bold text-white bg-pink-500 rounded" type="button">+</button>
     </div>
     <ul>
-      <li class="mb-2 last:mb-0 flex justify-between" v-for="item in items">
-        <p class="bg-gray-200 rounded p-3 cursor-pointer w-full">{{ item.text }}</p>
-        <button @click="deleteItem" class="rounded-tr rounded-br font-medium px-1 text-lg bg-pink-500 text-white" type="button">Delete</button>
+      <li class="flex justify-between mb-2 last:mb-0" v-for="item in items">
+        <p class="w-full p-3 bg-gray-200 rounded cursor-pointer">{{ item.text }}</p>
+        <button @click="deleteItem(index)" class="px-1 text-lg font-medium text-white bg-pink-500 rounded-tr rounded-br" type="button">Delete</button>
       </li>
     </ul>
-    <div class="flex justify-between items-center py-4">
+    <div class="flex items-center justify-between py-4">
       <p>You have {{ result }} pending tasks</p>
-      <button @click="clearItems" class="rounded font-medium px-1 py-2 text-lg bg-pink-500 text-white" type="button">Clear All</button>
+      <button @click="clearItems" class="px-1 py-2 text-lg font-medium text-white bg-pink-500 rounded" type="button">Clear All</button>
     </div>
   </div>
 </template>
@@ -36,9 +36,8 @@ function addItem() {
   }
 }
 
-
-function deleteItem() { 
-  items.value.pop()
+function deleteItem(index) { 
+  items.value.splice(index, 1)
 }
 
 </script>
